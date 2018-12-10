@@ -14,3 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/register', 'Auth\AuthController@showRegistration');
+Route::post('/register', 'Auth\AuthController@register');
+
+Route::get('/login', 'Auth\AuthController@showLogin')->name('login');
+Route::post('/login', 'Auth\AuthController@login')->name('login');
+
+Route::get('/logout', 'Auth\AuthController@logout')->name('login');
+Route::get('/dashboard', 'Auth\AuthController@index');
+
+Route::prefix('admin')->group(function(){
+
+	Route::get('', 'AdminController@index');
+
+	Route::get('login', 'Auth\AdminLoginController@showLogin');
+	Route::post('login', 'Auth\AdminLoginController@login');
+	Route::get('logout', 'Auth\AdminLoginController@logout');
+
+});
+
