@@ -10,6 +10,8 @@ class Admin extends Authenticatable
 {
 	use Notifiable;
 
+	protected $guard = 'admin';
+
 	protected $fillable = [
 		'name', 'email', 'password',
 	];
@@ -17,4 +19,10 @@ class Admin extends Authenticatable
 	protected $hidden = [
 		'password', 'remember_token',
 	];
+
+	public function setPasswordAttribute( $value ) {
+
+		$this->attributes['password'] = bcrypt( $value );
+
+	}
 }
