@@ -67,7 +67,7 @@ class AuthController extends Controller {
 
 		if ( \Auth::attempt( $filteredData, $request->has('remember_me') ) ) {
 
-			return redirect( '/dashboard' );
+			return redirect()->route('user.dashboard');
 		}
 
 		\Session::flash( 'Credential mismatch' );
